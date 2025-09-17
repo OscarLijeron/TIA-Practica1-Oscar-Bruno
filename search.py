@@ -100,7 +100,7 @@ def depthFirstSearch(problem):
     stack = util.Stack() # fringe
     finish = False # flag to indicate if goal is found
     start_state = problem.getStartState()
-    stack.push((start_state, []))     
+    stack.push((start_state, path))     
     while not finish:
         if stack.isEmpty():
             finish=True # if stack is empty, no solution found
