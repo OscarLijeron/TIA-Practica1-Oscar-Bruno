@@ -114,9 +114,10 @@ def depthFirstSearch(problem):
             visited.add(state) # put state visited
             for successor, action, cost in problem.getSuccessors(state):
                 if successor not in visited:
+                    visited.add(successor) # mark successor as visited
                     new_path = path + [action] # add action to path
                     stack.push((successor, new_path)) # push successor and new path onto stack
-
+                    
 
 def breadthFirstSearch(problem):
     path = [] # list to store the path (actions)
@@ -138,9 +139,9 @@ def breadthFirstSearch(problem):
             visited.add(state) # put state visited
             for successor, action, cost in problem.getSuccessors(state):
                 if successor not in visited:
+                    visited.add(successor) # mark successor as visited
                     new_path = path + [action] # add action to path
                     queue.push((successor, new_path)) # push successor and new path onto queue
-
 
 
 def uniformCostSearch(problem):
