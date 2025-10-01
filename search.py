@@ -144,10 +144,11 @@ def breadthFirstSearch(problem):
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
+    "*** YOUR CODE HERE ***"
     visited = set()
-    pq = util.PriorityQueue()
+    pq = util.PriorityQueue()  # fringe
     start_state = problem.getStartState()
-    pq.push((start_state, [], 0), 0)
+    pq.push((start_state, [], 0), 0)  # (estado, path, costo) con prioridad costo
 
     while not pq.isEmpty():
         state, path, cost = pq.pop()
@@ -161,16 +162,9 @@ def uniformCostSearch(problem):
                 if successor not in visited:
                     new_path = path + [action]
                     new_cost = cost + step_cost
-
-                    if problem.isGoalState(successor):
-                        return new_path
-
                     pq.push((successor, new_path, new_cost), new_cost)
 
     return []
-
-
-
 
 def nullHeuristic(state, problem=None):
     """
@@ -181,12 +175,12 @@ def nullHeuristic(state, problem=None):
 
 
 def aStarSearch(problem, heuristic=nullHeuristic):
-    """Search the node that has the lowest combined cost and heuristic first"""
+    """Search the node that has the lowest combined cost and heuristic first."""
+    "*** YOUR CODE HERE ***"
     visited = set()
-    pq = util.PriorityQueue()
+    pq = util.PriorityQueue()  # fringe
     start_state = problem.getStartState()
-
-    pq.push((start_state, [], 0), heuristic(start_state, problem))
+    pq.push((start_state, [], 0), 0 + heuristic(start_state, problem))  # (estado, path, costo)
 
     while not pq.isEmpty():
         state, path, cost = pq.pop()
@@ -200,14 +194,11 @@ def aStarSearch(problem, heuristic=nullHeuristic):
                 if successor not in visited:
                     new_path = path + [action]
                     new_cost = cost + step_cost
-
-                    if problem.isGoalState(successor):
-                        return new_path
-
-                    priority = heuristic(successor, problem)
+                    priority = new_cost + heuristic(successor, problem)
                     pq.push((successor, new_path, new_cost), priority)
 
     return []
+    
 
 
 # Abbreviations
